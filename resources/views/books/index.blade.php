@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Buku</title>
+    <title>Lemari Buku</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -46,9 +46,11 @@
                     <div>
                         <h2 class="text-xl font-semibold text-gray-800">Daftar Buku</h2>
                         <p class="text-gray-500 text-sm">Total: <span
+                                {{-- Menghitung jumlah buku --}}
                                 class="font-medium text-blue-600">{{ count($books ?? []) }}</span> buku</p>
                     </div>
                 </div>
+                {{-- Menuju halaman menambahkan buku --}}
                 <a href="{{ route('books.create') }}"
                     class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 group">
                     <i class="fas fa-plus mr-2 group-hover:rotate-90 transition-transform duration-200"></i>
@@ -118,6 +120,7 @@
                                         <div>
                                             <div class="text-sm font-medium text-gray-900">
                                                 {{ $book->name ?? 'Contoh Judul Buku' }}</div>
+                                            {{-- Menyimpan dan menambahkan ID buku --}}
                                             <div class="text-xs text-gray-500">ID: #{{ $book->id ?? $index + 1 }}
                                             </div>
                                         </div>
@@ -127,6 +130,7 @@
                                     <div class="flex items-center space-x-2">
                                         <span class="text-lg font-bold text-green-600">Rp</span>
                                         <span
+                                            {{-- Menambahkan format harga --}}
                                             class="text-sm font-semibold text-gray-900">{{ number_format($book->price ?? 50000, 0, ',', '.') }}</span>
                                     </div>
                                 </td>
@@ -134,17 +138,20 @@
                                     <span
                                         class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border border-purple-200">
                                         <i class="fas fa-bookmark mr-1 text-purple-600"></i>
+                                        {{-- Menambahkan kategori buku --}}
                                         {{ $book->category ?? 'Fiksi' }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-5">
                                     <div class="flex items-center justify-end space-x-2">
+                                        {{-- Tombol untuk mengedit buku --}}
                                         <a href="{{ route('books.edit', $book->id ?? 1) }}"
                                             class="inline-flex items-center px-3 py-2 text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 hover:border-blue-300 transition-all duration-200 group/edit">
                                             <i
                                                 class="fas fa-edit mr-1 group-hover/edit:scale-110 transition-transform duration-200"></i>
                                             Edit
                                         </a>
+                                         {{-- Tombol untuk menghapus buku --}}
                                         <form action="{{ route('books.destroy', $book->id ?? 1) }}" method="POST"
                                             style="display:inline"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">
