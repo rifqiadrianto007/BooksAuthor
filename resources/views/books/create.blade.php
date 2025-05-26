@@ -60,6 +60,7 @@
 
             <!-- Form Content -->
             <div class="p-8">
+                {{-- Form untuk menambahkan buku baru --}}
                 <form method="POST" action="{{ route('books.store') }}" class="space-y-8" id="bookForm">
                     @csrf
 
@@ -96,7 +97,7 @@
                             <span class="text-red-500 ml-1">*</span>
                         </label>
                         <div class="relative">
-                            <input type="number" id="price" name="price" required min="0" step="1000"
+                            <input type="number" id="price" name="price" required min="0" step="1"
                                 class="w-full px-4 py-3 pl-16 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white"
                                 placeholder="0" oninput="formatPrice(this)">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -126,11 +127,9 @@
                                     <option value="{{ $category->id ?? 1 }}">{{ $category->name ?? 'Kategori Contoh' }}
                                     </option>
                                 @empty
-                                    <option value="1">Fiksi</option>
-                                    <option value="2">Non-Fiksi</option>
-                                    <option value="3">Pendidikan</option>
-                                    <option value="4">Bisnis</option>
-                                    <option value="5">Teknologi</option>
+                                    <option value="1">Novel</option>
+                                    <option value="2">Komik</option>
+                                    <option value="3">Buku Pelajaran</option>
                                 @endforelse
                             </select>
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -162,43 +161,13 @@
                 </form>
             </div>
         </div>
-
-        <!-- Help Card -->
-        <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-6">
-            <div class="flex items-start space-x-4">
-                <div class="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                    <i class="fas fa-lightbulb text-blue-600"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold text-blue-900 mb-2">Tips Menambahkan Buku</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-blue-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Pastikan judul buku ditulis dengan lengkap dan jelas</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-blue-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Harga sebaiknya dalam kelipatan 1000 rupiah</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-blue-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Pilih kategori yang paling sesuai dengan isi buku</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-blue-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Semua field yang bertanda * wajib diisi</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 mt-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Perpustakaan Digital. Kelola buku dengan mudah dan efisien.</p>
+                <p>&copy; 2025 Lemari Buku. Kelola buku dengan mudah dan efisien.</p>
             </div>
         </div>
     </footer>
