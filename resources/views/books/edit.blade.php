@@ -128,7 +128,7 @@
                             <span class="text-red-500 ml-1">*</span>
                         </label>
                         <div class="relative">
-                            <input type="number" id="price" name="price" required min="0" step="1000"
+                            <input type="number" id="price" name="price" required min="0" step="1"
                                 value="{{ $book->price ?? 75000 }}"
                                 class="w-full px-4 py-3 pl-16 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-gray-900 placeholder-gray-400 bg-gray-50 focus:bg-white"
                                 placeholder="0" oninput="formatPrice(this)">
@@ -165,15 +165,11 @@
                                     </option>
                                 @empty
                                     <option value="1" {{ 1 == ($book->category_id ?? 1) ? 'selected' : '' }}>
-                                        Fiksi</option>
+                                        Novel</option>
                                     <option value="2" {{ 2 == ($book->category_id ?? 1) ? 'selected' : '' }}>
-                                        Non-Fiksi</option>
+                                        Komik</option>
                                     <option value="3" {{ 3 == ($book->category_id ?? 1) ? 'selected' : '' }}>
-                                        Pendidikan</option>
-                                    <option value="4" {{ 4 == ($book->category_id ?? 1) ? 'selected' : '' }}>
-                                        Bisnis</option>
-                                    <option value="5" {{ 5 == ($book->category_id ?? 1) ? 'selected' : '' }}>
-                                        Teknologi</option>
+                                        Buku Pelajaran</option>
                                 @endforelse
                             </select>
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -215,43 +211,13 @@
                 </form>
             </div>
         </div>
-
-        <!-- History Card -->
-        <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-indigo-200 p-6">
-            <div class="flex items-start space-x-4">
-                <div class="bg-indigo-100 p-2 rounded-lg flex-shrink-0">
-                    <i class="fas fa-history text-indigo-600"></i>
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-lg font-semibold text-indigo-900 mb-2">Tips Edit Buku</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-indigo-800">
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-indigo-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Periksa kembali perubahan sebelum menyimpan</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-indigo-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Gunakan tombol reset untuk kembali ke data asli</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-indigo-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Pastikan data yang diubah sudah sesuai</span>
-                        </div>
-                        <div class="flex items-start space-x-2">
-                            <i class="fas fa-check-circle text-indigo-600 mt-0.5 flex-shrink-0"></i>
-                            <span>Perubahan akan langsung tersimpan ke database</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 mt-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Perpustakaan Digital. Kelola buku dengan mudah dan efisien.</p>
+                <p>&copy; 2025 Lemari Buku. Kelola buku dengan mudah dan efisien.</p>
             </div>
         </div>
     </footer>
@@ -320,7 +286,7 @@
             if (currentPrice !== originalData.price) {
                 changes.push(
                     `Harga: Rp ${new Intl.NumberFormat('id-ID').format(originalData.price)} → Rp ${new Intl.NumberFormat('id-ID').format(currentPrice)}`
-                    );
+                );
             }
 
             if (currentCategory != originalData.category_id) {
